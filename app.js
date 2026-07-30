@@ -4,6 +4,8 @@ const withdrawForm = document.getElementById("withdrawForm");
 const transferForm = document.getElementById("transferForm");
 const balanceForm = document.getElementById("balanceForm");
 const closeForm = document.getElementById("closeForm");
+const actionSelect = document.getElementById("actionSelect");
+const actionPanels = Array.from(document.querySelectorAll(".action-panel"));
 const accountList = document.getElementById("accountList");
 const totalBalance = document.getElementById("totalBalance");
 const accountCount = document.getElementById("accountCount");
@@ -194,6 +196,12 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
+function showActionPanel(action) {
+  actionPanels.forEach((panel) => {
+    panel.classList.toggle("active", panel.dataset.action === action);
+  });
+}
+
 function formatCurrency(value) {
   return `$${Number(value).toFixed(2)}`;
 }
@@ -204,5 +212,9 @@ withdrawForm.addEventListener("submit", withdrawFunds);
 transferForm.addEventListener("submit", transferFunds);
 balanceForm.addEventListener("submit", checkBalance);
 closeForm.addEventListener("submit", closeAccount);
+actionSelect.addEventListener("change", (event) =>
+  showActionPanel(event.target.value),
+);
 
+showActionPanel(actionSelect.value);
 loadAccounts();

@@ -37,9 +37,28 @@
         </article>
       </section>
 
-      <section class="actions-grid">
-        <form id="createForm" class="card form-card">
-          <h2>Create account</h2>
+      <section class="card actions-card">
+        <div class="actions-header">
+          <h2>Banking actions</h2>
+          <label class="select-label" for="actionSelect"
+            >Choose an action</label
+          >
+          <select id="actionSelect">
+            <option value="create">Create account</option>
+            <option value="deposit">Deposit</option>
+            <option value="withdraw">Withdraw</option>
+            <option value="transfer">Transfer money</option>
+            <option value="balance">Check balance</option>
+            <option value="close">Close account</option>
+          </select>
+        </div>
+
+        <form
+          id="createForm"
+          class="form-card action-panel"
+          data-action="create"
+        >
+          <h3>Create account</h3>
           <label for="ownerName">Full name</label>
           <input
             id="ownerName"
@@ -50,8 +69,12 @@
           <button type="submit">Create account</button>
         </form>
 
-        <form id="depositForm" class="card form-card">
-          <h2>Deposit</h2>
+        <form
+          id="depositForm"
+          class="form-card action-panel"
+          data-action="deposit"
+        >
+          <h3>Deposit</h3>
           <label for="depositAccount">Account ID</label>
           <input
             id="depositAccount"
@@ -72,8 +95,12 @@
           <button type="submit">Deposit funds</button>
         </form>
 
-        <form id="withdrawForm" class="card form-card">
-          <h2>Withdraw</h2>
+        <form
+          id="withdrawForm"
+          class="form-card action-panel"
+          data-action="withdraw"
+        >
+          <h3>Withdraw</h3>
           <label for="withdrawAccount">Account ID</label>
           <input
             id="withdrawAccount"
@@ -94,8 +121,12 @@
           <button type="submit">Withdraw funds</button>
         </form>
 
-        <form id="transferForm" class="card form-card">
-          <h2>Transfer money</h2>
+        <form
+          id="transferForm"
+          class="form-card action-panel"
+          data-action="transfer"
+        >
+          <h3>Transfer money</h3>
           <label for="transferFrom">From account</label>
           <input
             id="transferFrom"
@@ -123,8 +154,12 @@
           <button type="submit">Transfer funds</button>
         </form>
 
-        <form id="balanceForm" class="card form-card">
-          <h2>Check balance</h2>
+        <form
+          id="balanceForm"
+          class="form-card action-panel"
+          data-action="balance"
+        >
+          <h3>Check balance</h3>
           <label for="balanceAccount">Account ID</label>
           <input
             id="balanceAccount"
@@ -135,8 +170,8 @@
           <button type="submit">View balance</button>
         </form>
 
-        <form id="closeForm" class="card form-card">
-          <h2>Close account</h2>
+        <form id="closeForm" class="form-card action-panel" data-action="close">
+          <h3>Close account</h3>
           <label for="closeAccount">Account ID</label>
           <input
             id="closeAccount"

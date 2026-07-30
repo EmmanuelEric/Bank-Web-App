@@ -100,11 +100,31 @@ h1 {
   font-size: 1.6rem;
 }
 
-.actions-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+.actions-card {
+  border-radius: 20px;
+  padding: 20px;
   margin-bottom: 20px;
+}
+
+.actions-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.select-label {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+select {
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 12px 14px;
+  outline: none;
 }
 
 .form-card {
@@ -113,11 +133,21 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
 }
 
-.form-card h2 {
+.form-card h3 {
   font-size: 1.1rem;
   margin-bottom: 4px;
+}
+
+.action-panel {
+  display: none;
+}
+
+.action-panel.active {
+  display: flex;
 }
 
 label {
@@ -209,15 +239,8 @@ button:hover {
   transform: translateX(-50%) translateY(0);
 }
 
-@media (max-width: 900px) {
-  .actions-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 640px) {
-  .summary-grid,
-  .actions-grid {
+  .summary-grid {
     grid-template-columns: 1fr;
   }
 
