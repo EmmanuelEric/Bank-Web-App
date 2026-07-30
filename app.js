@@ -1,6 +1,7 @@
 const createForm = document.getElementById("createForm");
 const depositForm = document.getElementById("depositForm");
 const withdrawForm = document.getElementById("withdrawForm");
+const transferForm = document.getElementById("transferForm");
 const balanceForm = document.getElementById("balanceForm");
 const closeForm = document.getElementById("closeForm");
 const accountList = document.getElementById("accountList");
@@ -121,6 +122,33 @@ async function withdrawFunds(event) {
   }
 }
 
+async function transferFunds(event) {
+  event.preventDefault();
+  const fromAccount = document.getElementById("transferFrom").value.trim();
+  const toAccount = document.getElementById("transferTo").value.trim();
+  const amount = document.getElementById("transferAmount").value;
+
+  const response = await fetch(
+    `${API_BASE}/api/accounts/${encodeURIComponent(fromAccount)}/transfer`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `toAccount=${encodeURIComponent(toAccount)}&amount=${encodeURIComponent(amount)}`,
+    },
+  );
+
+  const data = await response.json();
+  if (response.ok) {
+    showMessage(
+      `Transferred ${formatCurrency(amount)} from ${fromAccount} to ${toAccount}`,
+    );
+    transferForm.reset();
+    loadAccounts();
+  } else {
+    showMessage(data.message || "Transfer failed.");
+  }
+}
+
 async function checkBalance(event) {
   event.preventDefault();
   const accountId = document.getElementById("balanceAccount").value.trim();
@@ -173,6 +201,7 @@ function formatCurrency(value) {
 createForm.addEventListener("submit", createAccount);
 depositForm.addEventListener("submit", depositFunds);
 withdrawForm.addEventListener("submit", withdrawFunds);
+transferForm.addEventListener("submit", transferFunds);
 balanceForm.addEventListener("submit", checkBalance);
 closeForm.addEventListener("submit", closeAccount);
 

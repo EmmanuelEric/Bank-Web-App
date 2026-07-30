@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manny Bank</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero-card">
+        <div>
+          <p class="eyebrow">Easy, fast and reliable</p>
+          <h1>Manny Bank</h1>
+          <p class="hero-copy">
+            Move money quickly, manage your accounts with confidence, and keep
+            everything organized in one easy dashboard.
+          </p>
+        </div>
+        <div class="hero-badge">24/7 Access</div>
+      </header>
+
+      <section class="summary-grid">
+        <article class="card stat-card">
+          <span class="stat-label">Total balance</span>
+          <strong id="totalBalance">$0.00</strong>
+        </article>
+        <article class="card stat-card">
+          <span class="stat-label">Accounts</span>
+          <strong id="accountCount">0</strong>
+        </article>
+      </section>
+
+      <section class="actions-grid">
+        <form id="createForm" class="card form-card">
+          <h2>Create account</h2>
+          <label for="ownerName">Full name</label>
+          <input
+            id="ownerName"
+            name="ownerName"
+            placeholder="Enter account holder"
+            required
+          />
+          <button type="submit">Create account</button>
+        </form>
+
+        <form id="depositForm" class="card form-card">
+          <h2>Deposit</h2>
+          <label for="depositAccount">Account ID</label>
+          <input
+            id="depositAccount"
+            name="depositAccount"
+            placeholder="ACC1"
+            required
+          />
+          <label for="depositAmount">Amount</label>
+          <input
+            id="depositAmount"
+            name="depositAmount"
+            type="number"
+            step="0.01"
+            min="0.01"
+            placeholder="0.00"
+            required
+          />
+          <button type="submit">Deposit funds</button>
+        </form>
+
+        <form id="withdrawForm" class="card form-card">
+          <h2>Withdraw</h2>
+          <label for="withdrawAccount">Account ID</label>
+          <input
+            id="withdrawAccount"
+            name="withdrawAccount"
+            placeholder="ACC1"
+            required
+          />
+          <label for="withdrawAmount">Amount</label>
+          <input
+            id="withdrawAmount"
+            name="withdrawAmount"
+            type="number"
+            step="0.01"
+            min="0.01"
+            placeholder="0.00"
+            required
+          />
+          <button type="submit">Withdraw funds</button>
+        </form>
+
+        <form id="transferForm" class="card form-card">
+          <h2>Transfer money</h2>
+          <label for="transferFrom">From account</label>
+          <input
+            id="transferFrom"
+            name="transferFrom"
+            placeholder="ACC1"
+            required
+          />
+          <label for="transferTo">To account</label>
+          <input
+            id="transferTo"
+            name="transferTo"
+            placeholder="ACC2"
+            required
+          />
+          <label for="transferAmount">Amount</label>
+          <input
+            id="transferAmount"
+            name="transferAmount"
+            type="number"
+            step="0.01"
+            min="0.01"
+            placeholder="0.00"
+            required
+          />
+          <button type="submit">Transfer funds</button>
+        </form>
+
+        <form id="balanceForm" class="card form-card">
+          <h2>Check balance</h2>
+          <label for="balanceAccount">Account ID</label>
+          <input
+            id="balanceAccount"
+            name="balanceAccount"
+            placeholder="ACC1"
+            required
+          />
+          <button type="submit">View balance</button>
+        </form>
+
+        <form id="closeForm" class="card form-card">
+          <h2>Close account</h2>
+          <label for="closeAccount">Account ID</label>
+          <input
+            id="closeAccount"
+            name="closeAccount"
+            placeholder="ACC1"
+            required
+          />
+          <button type="submit">Close account</button>
+        </form>
+      </section>
+
+      <section class="card account-section">
+        <div class="section-heading">
+          <h2>Account overview</h2>
+          <p>Recent activity and balances at a glance.</p>
+        </div>
+        <div id="accountList" class="account-list"></div>
+      </section>
+
+      <section class="card balance-card">
+        <h2>Balance result</h2>
+        <div id="balanceResult">Select an account to see its balance.</div>
+      </section>
+    </div>
+
+    <div id="message" class="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>

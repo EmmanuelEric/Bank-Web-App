@@ -128,6 +128,35 @@ public class main {
                 sendJson(exchange, 200, buildAccountResponse(account));
                 return;
             }
+
+            if (parts[4].equals("transfer")) {
+                String toAccountId = params.getOrDefault("toAccount", "").trim();
+                BankAccount targetAccount = accounts.get(toAccountId);
+
+                if (toAccountId.isEmpty() || targetAccount == null) {
+                    sendJson(exchange, 400, "{\"message\":\"Destination account not found\"}");
+                    return;
+                }
+
+                if (accountId.equals(toAccountId)) {
+                    sendJson(exchange, 400, "{\"message\":\"Cannot transfer to the same account\"}");
+                    return;
+                }
+
+                if (amount <= 0) {
+                    sendJson(exchange, 400, "{\"message\":\"Amount must be greater than zero\"}");
+                    return;
+                }
+
+                if (!account.withdraw(amount)) {
+                    sendJson(exchange, 400, "{\"message\":\"Insufficient funds\"}");
+                    return;
+                }
+
+                targetAccount.deposit(amount);
+                sendJson(exchange, 200, "{\"message\":\"Transfer complete\",\"fromAccount\":" + buildAccountJson(account) + ",\"toAccount\":" + buildAccountJson(targetAccount) + "}");
+                return;
+            }
         }
 
         sendJson(exchange, 404, "{\"message\":\"Route not found\"}");
